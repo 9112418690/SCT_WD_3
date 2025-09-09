@@ -1,0 +1,233 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+  font-family: "Poppins", sans-serif;
+  transition: background 0.5s ease;
+  padding: 20px;
+}
+
+.game-wrapper {
+  background: #ffffff;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 450px;
+  width: 100%;
+  padding: 20px;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+.game-title {
+  font-size: clamp(28px, 6vw, 42px);
+  font-weight: bold;
+  color: #2d3436;
+  margin-bottom: 20px;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  font-size: clamp(14px, 4vw, 18px);
+  font-weight: bold;
+  color: #444;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.board {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: #2d3436;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.cell {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  background: #fdfdfd;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.cell:hover {
+  background: #ffeaa7;
+  transform: scale(1.05);
+}
+
+.statusText {
+  margin-top: 20px;
+  font-size: clamp(16px, 4vw, 22px);
+  font-weight: bold;
+  color: #2d3436;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.restartBtn,
+.resetScoresBtn,
+.toggleThemeBtn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  font-size: clamp(13px, 3vw, 15px);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.restartBtn:hover,
+.resetScoresBtn:hover,
+.toggleThemeBtn:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  transform: scale(1.05);
+}
+
+.winning-cell {
+  background: #55efc4 !important;
+  color: #2d3436 !important;
+  animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px #55efc4, 0 0 10px #55efc4;
+  }
+  to {
+    box-shadow: 0 0 20px #00cec9, 0 0 30px #00cec9;
+  }
+}
+
+.winnerBanner {
+  display: none;
+  font-size: clamp(16px, 4vw, 22px);
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #c333b0, #fad0c4);
+  color: #2d3436;
+  animation: flash 1s infinite alternate;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.winnerBanner button {
+  padding: 8px 16px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  background: #2ecc71;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.winnerBanner button:hover {
+  background: #27ae60;
+}
+
+@keyframes flash {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+body.dark {
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+}
+
+body.dark .game-wrapper {
+  background: #2d3436;
+  color: #ecf0f1;
+}
+
+body.dark .game-title,
+body.dark .scoreboard,
+body.dark .statusText {
+  color: #ecf0f1;
+}
+
+body.dark .board {
+  background: #444;
+}
+
+body.dark .cell {
+  background: #636e72;
+  color: #fff;
+}
+
+body.dark .cell:hover {
+  background: #b2bec3;
+}
+
+body.dark .winnerBanner {
+  background: linear-gradient(135deg, #74ebd5, #9face6);
+  color: #fff;
+}
+
+body.dark .winnerBanner button {
+  background: #e67e22;
+}
+
+body.dark .winnerBanner button:hover {
+  background: #d35400;
+}
+
+@media (max-width: 500px) {
+  .game-wrapper {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .board {
+    max-width: 90vw;
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .restartBtn,
+  .resetScoresBtn,
+  .toggleThemeBtn {
+    width: 100%;
+  }
+}
